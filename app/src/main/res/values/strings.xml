@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Stormy</string>
+    <string name="title_activity_daily_forecast">Daily Forecast</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="company_logo">BCTecnica &#169;</string>
+
+    <string name="how_to_use">
+        How to use \n\n
+        Blah Blah Blah Blah Blah Blah Blah Blah \n\n
+        Blah Blah Blah Blah Blah Blah Blah Blah \n\n
+        Blah Blah Blah Blah Blah Blah Blah Blah \n\n
+        Blah Blah Blah Blah Blah Blah Blah Blah \n\n
+        Blah Blah Blah Blah Blah Blah Blah Blah \n\n
+        Blah Blah Blah Blah Blah Blah Blah Blah \n\n
+    </string>
+
+    <string-array name="Spinner_items">
+        <item>Central England</item>
+        <item>North England</item>
+        <item>South England</item>
+        <item>West England</item>
+        <item>East England</item>
+        <item>Wales</item>
+        <item>Ireland</item>
+        <item>Northern Ireland</item>
+        <item>South Scotland</item>
+        <item>North Scotland</item>
+    </string-array>
+</resources>

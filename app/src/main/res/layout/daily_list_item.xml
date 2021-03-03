@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="day"
+            type="com.bctecnica.stormy.weather.Day"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:id="@+id/dailyListView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        tools:background="#2E2E2E">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/timeLabel"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@{String.valueOf(day.time)}"
+            android:textColor="#0073D2"
+            android:textSize="24sp"
+            tools:text="12 PM \n hello" />
+
+        <TextView
+            android:id="@+id/tempLabel"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/timeLabel"
+            android:gravity="center"
+            android:text="@{String.valueOf(day.icon)}"
+            android:textColor="#0073D2"
+            android:textSize="24sp"
+            tools:text="100 oC" />
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
