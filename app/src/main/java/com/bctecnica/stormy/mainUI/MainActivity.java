@@ -245,14 +245,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // --Menu--
-    // Creates drop down menu and logic for item selections
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem checkable = menu.findItem(R.id.myLocationMenuSwitch);
-        checkable.setChecked(isMyLocationChecked);
-        return true;
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -261,26 +253,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.myLocationMenuSwitch:
-                isMyLocationChecked = !item.isChecked();
-                item.setChecked(isMyLocationChecked);
-                return true;
-            case R.id.feedbackMenu:
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bctecnica@gmail.com"});
-                i.putExtra(Intent.EXTRA_SUBJECT, "Stormy app");
-                try {
-                    startActivity(Intent.createChooser(i, "Send e-mail..."));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(MainActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bctecnica@gmail.com"});
+        i.putExtra(Intent.EXTRA_SUBJECT, "Stormy app");
+        try {
+            startActivity(Intent.createChooser(i, "Send e-mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(MainActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
+        return super.onOptionsItemSelected(item);
     }
+
 
     // Passes the hours array as an intent to be displayed as a recycler view
     public void dailyOnClick(View view){

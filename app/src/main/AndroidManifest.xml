@@ -4,8 +4,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,11 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.bctecnica.stormy.mainUI.MainActivity"
-            android:label="How to use"/>
+            android:label="Tracker"/>
         <activity
             android:name="com.bctecnica.stormy.weather.DailyForecast"
             android:label="@string/title_activity_daily_forecast" />
-        <activity android:name="com.bctecnica.stormy.mainUI.Opening">
+        <activity android:name="com.bctecnica.stormy.mainUI.Opening"
+            android:label="How to use">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -27,10 +27,10 @@ public class Day implements Serializable {
         String chance;
 
         if(icon == "11d") {
-            chance = "Likely";
+            chance = "High";
         }
         else {
-            chance = "Unlikely";
+            chance = "Low";
         }
 
         return chance;

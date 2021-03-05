@@ -4,11 +4,8 @@
     tools:context=".mainUI.MainActivity">
 
     <item
-        android:id="@+id/myLocationMenuSwitch"
-        android:checkable="true"
-        android:title="My location" />
-    <item
         android:id="@+id/feedbackMenu"
         android:title="Feedback"
         app:showAsAction="never" />
+
 </menu>
