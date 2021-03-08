@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,7 +51,6 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private Button trackingButton;
@@ -62,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private Vibrator vibrator;
+
+    private Day[] day;
+
+    double latitude = 0.0;
+    double longitude = 0.0;
+    String userLocation;
 
     // Used to run and format stop watch
     Handler customHandler = new Handler();
@@ -82,13 +90,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-    private Day[] day;
-
-    double latitude = 0.0;
-    double longitude = 0.0;
-    String userLocation;
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +101,10 @@ public class MainActivity extends AppCompatActivity {
         longitude = intent.getDoubleExtra("long",0);
         userLocation = intent.getStringExtra("location");
 
-
         trackingButton = findViewById(R.id.btn_strike);
         timerValue = findViewById(R.id.text_timerValue);
+
+        vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
         mExampleList = new ArrayList<>();
         buildRecyclerView();
@@ -121,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 customHandler.removeCallbacks(updateTimerThread);
                 timerValue.setText("00:00");
                 mLayoutManager.scrollToPosition(0);
+                vibrator.vibrate(500);
             }
             return false;
         });

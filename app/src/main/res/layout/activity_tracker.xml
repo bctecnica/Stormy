@@ -13,14 +13,14 @@
 
     <Button
         android:id="@+id/btn_7day_forecast"
-        android:layout_width="160dp"
-        android:layout_height="35dp"
-        android:background="#40ffffff"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:background="#fff"
         android:onClick="dailyOnClick"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:text="7-Day Forecast"
-        android:textColor="#FFFFFF"
+        android:textColor="#0073D2"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/text_time"
         app:layout_constraintEnd_toEndOf="parent"
