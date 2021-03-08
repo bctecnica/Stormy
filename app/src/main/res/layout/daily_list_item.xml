@@ -32,14 +32,15 @@
 
         <TextView
             android:id="@+id/timeLabel"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:text="@{String.valueOf(day.time)}"
-            android:textColor="#0073D2"
+            android:textColor="#000"
+            android:textStyle="italic"
             android:textSize="24sp"
             tools:text="12 PM \n hello" />
 

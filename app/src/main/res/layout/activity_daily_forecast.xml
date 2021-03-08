@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent">
+        android:background="#2E2E2E">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center"
@@ -30,7 +30,7 @@
             android:background="@drawable/date_cornered"
             android:gravity="center"
             android:text="Date"
-            android:textColor="#0073D2"
+            android:textColor="#000"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/center"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,8 +44,8 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/chance_cornered"
             android:gravity="center"
-            android:text="Chance of \n lightning"
-            android:textColor="#0073D2"
+            android:text="Chance of \nlightning"
+            android:textColor="#000"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/center"
@@ -80,7 +80,7 @@
             android:id="@+id/textView_weatherFor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weather Forecast For:"
+            android:text="Weather forecast for:"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/textView_location"
             app:layout_constraintEnd_toEndOf="parent"

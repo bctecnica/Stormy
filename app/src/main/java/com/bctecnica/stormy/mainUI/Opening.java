@@ -17,9 +17,7 @@ public class Opening extends AppCompatActivity {
 
     double latitude = 50.7150;
     double longitude = 1.9872;
-
-    private Spinner spinner;
-    private static final String[] paths = {"item 1", "item 2", "item 3"};
+    String userLocation;
 
     Button start;
 
@@ -27,7 +25,8 @@ public class Opening extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opening);
 
-        Spinner locationSpinner = (Spinner) findViewById(R.id.coloredSpinner_location);
+        Spinner locationSpinner = findViewById(R.id.coloredSpinner_location);
+        start = findViewById(R.id.start_BTN);
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this,
@@ -49,60 +48,70 @@ public class Opening extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"picked Central eng",Toast.LENGTH_SHORT).show();
                         latitude = 51.4540;
                         longitude = -0.1052;
+                        userLocation = "London";
                         break;
                     case 1:
                         // North England - York
                         Toast.makeText(getApplicationContext(),"picked north eng",Toast.LENGTH_SHORT).show();
                         latitude = 53.8978;
                         longitude = -1.03970;
+                        userLocation = "York";
                         break;
                     case 2:
                         // South England - Poole
                         Toast.makeText(getApplicationContext(),"picked south eng",Toast.LENGTH_SHORT).show();
                         latitude = 50.7150;
                         longitude = -1.9872;
+                        userLocation = "Poole";
                         break;
                     case 3:
                         // West England - Exeter
                         Toast.makeText(getApplicationContext(),"picked west eng",Toast.LENGTH_SHORT).show();
                         latitude = 50.7051;
                         longitude = -3.5257;
+                        userLocation = "Exeter";
                         break;
                     case 4:
                         // East England - Norwich
                         Toast.makeText(getApplicationContext(),"picked east eng",Toast.LENGTH_SHORT).show();
                         latitude = 52.5830;
                         longitude = 1.2982;
+                        userLocation = "Norwich";
                         break;
                     case 5:
                         // Wales - Newtown
                         Toast.makeText(getApplicationContext(),"picked wales",Toast.LENGTH_SHORT).show();
                         latitude = 52.4961;
                         longitude = -3.3173;
+                        userLocation = "Newton";
                         break;
                     case 6:
                         // Ireland - Clara
                         Toast.makeText(getApplicationContext(),"picked ireland",Toast.LENGTH_SHORT).show();
                         latitude = 53.3243;
                         longitude = -7.6078;
+                        userLocation = "Clara";
                         break;
                     case 7:
                         // Northern Ireland - Belfast
                         Toast.makeText(getApplicationContext(),"picked north ire",Toast.LENGTH_SHORT).show();
                         latitude = 54.5465;
                         longitude = -5.9072;
+                        userLocation = "Belfast";
                         break;
                     case 8:
                         // South Scotland - Glasgow
                         Toast.makeText(getApplicationContext(),"picked south scot",Toast.LENGTH_SHORT).show();
                         latitude = 55.8012;
                         longitude = -4.2589;
+                        userLocation = "Glasgow";
                         break;
                     case 9:
                         // North Scotland - Inverness
                         Toast.makeText(getApplicationContext(),"picked north scot",Toast.LENGTH_SHORT).show();
                         latitude = 57.4331;
                         longitude = -4.1929;
+                        userLocation = "Inverness";
                         break;
                 }
             }
@@ -113,12 +122,9 @@ public class Opening extends AppCompatActivity {
             }
         });
 
-        start = findViewById(R.id.start_BTN);
-
         start.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.putExtra("long", longitude);
-            intent.putExtra("lat", latitude);
+            intent.putExtra("location", userLocation);
             startActivity(intent);
         });
 

@@ -18,7 +18,7 @@
             android:name="com.bctecnica.stormy.weather.DailyForecast"
             android:label="@string/title_activity_daily_forecast" />
         <activity android:name="com.bctecnica.stormy.mainUI.Opening"
-            android:label="How to use">
+            android:label="Stormy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -42,8 +42,7 @@ public class DailyForecast extends AppCompatActivity {
         binding.dailyListItems.setLayoutManager(new LinearLayoutManager(this));
 
         location = findViewById(R.id.textView_location);
-        String passedLong = String.valueOf(intent.getDoubleExtra("long",0));
-        String passedLat = String.valueOf(intent.getDoubleExtra("lat",0));
-        location.setText(passedLong + " - " +passedLat);
+        String passedLocation = intent.getStringExtra("location");
+        location.setText(passedLocation);
     }
 }

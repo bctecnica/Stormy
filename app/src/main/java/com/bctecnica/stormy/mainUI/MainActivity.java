@@ -1,10 +1,8 @@
 package com.bctecnica.stormy.mainUI;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -21,7 +19,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,8 +26,6 @@ import com.bctecnica.stormy.R;
 import com.bctecnica.stormy.weather.AlertDialogFragment;
 import com.bctecnica.stormy.weather.DailyForecast;
 import com.bctecnica.stormy.weather.Day;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -60,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button trackingButton;
     private TextView timerValue;
-
-    private boolean isMyLocationChecked = false;
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
@@ -94,16 +87,19 @@ public class MainActivity extends AppCompatActivity {
 
     double latitude = 0.0;
     double longitude = 0.0;
+    String userLocation;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_tracker);
 
         Intent intent = getIntent();
         latitude = intent.getDoubleExtra("lat",0);
         longitude = intent.getDoubleExtra("long",0);
+        userLocation = intent.getStringExtra("location");
+
 
         trackingButton = findViewById(R.id.btn_strike);
         timerValue = findViewById(R.id.text_timerValue);
@@ -273,8 +269,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, DailyForecast.class);
         intent.putExtra("DailyList",(Serializable) days);
-        intent.putExtra("long", longitude);
-        intent.putExtra("lat", latitude);
+        intent.putExtra("location", userLocation);
 
         startActivity(intent);
     }
