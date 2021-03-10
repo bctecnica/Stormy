@@ -1,42 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/tracker_View"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E2E2E"
+    android:background="@color/appGrey"
     android:keepScreenOn="true"
     tools:context=".mainUI.MainActivity">
 
-    <Button
-        android:id="@+id/btn_7day_forecast"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:background="#fff"
-        android:onClick="dailyOnClick"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="7-Day Forecast"
-        android:textColor="#0073D2"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/text_time"
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_timer_value"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_strike" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/text_timerValue"
+        android:id="@+id/txt_timer_value"
         android:layout_width="106dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="00:00"
-        android:textColor="#0073D2"
+        android:textColor="@color/appBlue"
         android:textSize="20dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/btn_strike"
@@ -50,36 +45,53 @@
         android:layout_marginBottom="120dp"
         android:background="@drawable/custom_button"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_strike"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/btn_7day_forecast"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:background="@color/appWhite"
+        android:onClick="dailyForecastOnClick"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="7-Day Forecast"
+        android:textColor="@color/appBlue"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_time_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_strike" />
+
     <TextView
-        android:id="@+id/text_time"
+        android:id="@+id/txt_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Time of strike"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/appWhite"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView" />
+        app:layout_constraintBottom_toTopOf="@+id/recycler_strike"
+        app:layout_constraintStart_toStartOf="@+id/recycler_strike" />
 
     <TextView
-        android:id="@+id/text_distance"
+        android:id="@+id/txt_distance_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:text="Estimated distance"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/appWhite"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView" />
+        app:layout_constraintBottom_toTopOf="@+id/recycler_strike"
+        app:layout_constraintEnd_toEndOf="@+id/recycler_strike" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="320dp"
-        android:layout_height="280dp"
+        android:id="@+id/recycler_strike"
+        android:layout_width="340dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/darker_gray"
         android:padding="4dp"
@@ -89,4 +101,4 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</ScrollView>

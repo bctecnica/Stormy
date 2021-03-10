@@ -10,40 +10,100 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2E2E2E"
+        android:background="@color/appGrey"
         tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/howToUseText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
             android:text="@string/how_to_use"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/appWhite"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView_location"
+            android:id="@+id/txt_how_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:text="@string/how_to_start"
+            android:textColor="@color/appWhite"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/howToUseText" />
+
+        <ImageView
+            android:id="@+id/image_how_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_how_start"
+            app:srcCompat="@drawable/how_to" />
+
+        <TextView
+            android:id="@+id/txt_how_to_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:text="@string/how_to_release"
+            android:textColor="@color/appWhite"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_how_to" />
+
+        <View
+            android:id="@+id/divider_mid"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:background="@color/appWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_how_to_release" />
+
+        <TextView
+            android:id="@+id/txt_select_location"
             android:layout_width="261dp"
             android:layout_height="0dp"
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:text="-Select location-"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/appWhite"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider4" />
+            app:layout_constraintTop_toBottomOf="@+id/divider_mid" />
+
+        <ImageView
+            android:id="@+id/image_world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_select_location"
+            app:srcCompat="@drawable/world" />
 
         <Spinner
-            android:id="@+id/coloredSpinner_location"
+            android:id="@+id/spinner_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -52,20 +112,20 @@
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toBottomOf="@+id/image_world" />
 
         <Button
-            android:id="@+id/start_BTN"
-            android:layout_width="220dp"
+            android:id="@+id/btn_start"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:background="#fff"
-            android:onClick="dailyOnClick"
+            android:layout_marginTop="30dp"
+            android:background="@color/appWhite"
+            android:onClick="dailyForecastOnClick"
             android:text="start tracking"
-            android:textColor="#0073D2"
+            android:textColor="@color/appBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coloredSpinner_location" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_location" />
 
         <TextView
             android:id="@+id/companyLogo"
@@ -73,67 +133,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="BCTecnica &#169;"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/appWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/start_BTN" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
-            android:text="When you see a flash of lightning tap and hold the tracker button."
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/howToUseText" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="When you hear the thunder release the button."
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:srcCompat="@drawable/how_to" />
-
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="40dp"
-            android:background="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_location"
-            app:srcCompat="@drawable/world" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_start" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

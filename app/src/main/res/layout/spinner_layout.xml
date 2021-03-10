@@ -5,7 +5,7 @@
     android:padding="10dp"
     android:text="South"
     android:layout_gravity="center"
-    android:textColor="#fff"
+    android:textColor="@color/appWhite"
     android:textSize="20sp">
 
 </CheckedTextView>

@@ -26,8 +26,6 @@ public class DailyForecast extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_forecast);
 
-
-
         Intent intent = getIntent();
         List<Day> dayList = (ArrayList<Day>) intent.getSerializableExtra("DailyList");
 
@@ -41,7 +39,7 @@ public class DailyForecast extends AppCompatActivity {
         binding.dailyListItems.setAdapter(adapter);
         binding.dailyListItems.setLayoutManager(new LinearLayoutManager(this));
 
-        location = findViewById(R.id.textView_location);
+        location = findViewById(R.id.txt_select_location);
         String passedLocation = intent.getStringExtra("location");
         location.setText(passedLocation);
     }

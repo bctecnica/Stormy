@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">Stormy</string>
     <string name="title_activity_daily_forecast">Daily forecast</string>
-
-    <string name="company_logo">BCTecnica &#169;</string>
-
     <string name="how_to_use"><u>How to use</u></string>
-
+    <string name="company_logo">BCTecnica &#169;</string>
+    <string name="how_to_release">When you hear the sound of thunder release the button and stormy will calculate the distance of the strike.</string>
+    <string name="how_to_start">When you see a flash of lightning tap and hold the tracker button.</string>
 
     <string-array name="Spinner_items">
         <item>Central England</item>
@@ -19,4 +18,5 @@
         <item>South Scotland</item>
         <item>North Scotland</item>
     </string-array>
+
 </resources>

@@ -51,8 +51,8 @@
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/timeLabel"
             android:gravity="center"
-            android:text="@{String.valueOf(day.icon)}"
-            android:textColor="#0073D2"
+            android:text="@{String.valueOf(day.chance)}"
+            android:textColor="@color/appBlue"
             android:textSize="24sp"
             tools:text="100 oC" />
     </RelativeLayout>

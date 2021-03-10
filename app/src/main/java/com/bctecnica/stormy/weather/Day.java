@@ -23,7 +23,7 @@ public class Day implements Serializable {
     }
 
     // Returns the chance of lightning depending on the json data
-    public String getIcon() {
+    public String getChance() {
         String chance;
 
         if(icon == "11d") {

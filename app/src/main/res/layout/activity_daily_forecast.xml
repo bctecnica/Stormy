@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2E2E2E">
+        android:background="@color/appGrey">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center"
@@ -22,7 +22,7 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <TextView
-            android:id="@+id/textView_date"
+            android:id="@+id/txt_date"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginTop="5dp"
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView_chanceOfLighning"
+            android:id="@+id/txt_chance_of_lightning"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginStart="2dp"
@@ -57,7 +57,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="50dp"
-            android:background="#2E2E2E"
+            android:background="@color/appGrey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,23 +66,23 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
-            android:id="@+id/textView_location"
+            android:id="@+id/txt_select_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="location"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/appWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView_weatherFor"
+            android:id="@+id/txt_weather_for"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Weather forecast for:"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/textView_location"
+            android:textColor="@color/appWhite"
+            app:layout_constraintBottom_toTopOf="@+id/txt_select_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

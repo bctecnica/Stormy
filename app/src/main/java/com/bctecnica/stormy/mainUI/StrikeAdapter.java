@@ -35,8 +35,8 @@ public class StrikeAdapter extends RecyclerView.Adapter<StrikeAdapter.ExampleVie
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
         StrikeItem currentItem = exampleList.get(position);
-        holder.textView_time.setText(currentItem.getText1());
-        holder.textView_distance.setText(currentItem.getText2());
+        holder.textView_time.setText(currentItem.getTime());
+        holder.textView_distance.setText(currentItem.getDistance());
     }
     @Override
     public int getItemCount() {

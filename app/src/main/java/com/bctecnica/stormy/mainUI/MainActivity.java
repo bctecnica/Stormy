@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView timerValue;
 
     private static DecimalFormat df = new DecimalFormat("0.00");
+    private long startTime=0L,timeInMilliseconds=0L,timeSwapBuff=0L,updateTime=0L;
+
+    Handler timerHandler = new Handler();
 
     private ArrayList<StrikeItem> mExampleList;
     private RecyclerView mRecyclerView;
@@ -67,15 +70,57 @@ public class MainActivity extends AppCompatActivity {
 
     private Day[] day;
 
-    double latitude = 0.0;
-    double longitude = 0.0;
-    String userLocation;
+    private double latitude = 0.0;
+    private double longitude = 0.0;
+    private String userLocation;
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tracker);
+
+        // Activity setup
+        Intent intent = getIntent();
+        latitude = intent.getDoubleExtra("lat",0);
+        longitude = intent.getDoubleExtra("long",0);
+        userLocation = intent.getStringExtra("location");
+
+        trackingButton = findViewById(R.id.btn_strike);
+        timerValue = findViewById(R.id.txt_timer_value);
+
+        vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+
+        mExampleList = new ArrayList<>();
+        buildRecyclerView();
+
+        // Logic for tracking button
+        trackingButton.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                // start your timer
+                timerValue.setVisibility(View.VISIBLE);
+                startTime = SystemClock.uptimeMillis();
+                timerHandler.postDelayed(updateTimer,0);
+
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                // stop your timer.
+                timerValue.setVisibility(View.INVISIBLE);
+                insertItem(0);
+                timerHandler.removeCallbacks(updateTimer);
+                timerValue.setText("00:00");
+                mLayoutManager.scrollToPosition(0);
+                vibrator.vibrate(500);
+            }
+            return false;
+        });
+
+        // Gets forecast Json from open weather API
+        getForecast(latitude, longitude);
+
+    }
 
     // Used to run and format stop watch
-    Handler customHandler = new Handler();
-    long startTime=0L,timeInMilliseconds=0L,timeSwapBuff=0L,updateTime=0L;
-
-    Runnable updateTimerThread = new Runnable() {
+    Runnable updateTimer = new Runnable() {
         @Override
         public void run() {
             timeInMilliseconds = SystemClock.uptimeMillis()-startTime;
@@ -86,51 +131,9 @@ public class MainActivity extends AppCompatActivity {
             milliseconds%=100;
             timerValue.setText(String.format("%02d",secs)+":"
                     +String.format("%02d",milliseconds));
-            customHandler.postDelayed(this,0);
+            timerHandler.postDelayed(this,0);
         }
     };
-
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tracker);
-
-        Intent intent = getIntent();
-        latitude = intent.getDoubleExtra("lat",0);
-        longitude = intent.getDoubleExtra("long",0);
-        userLocation = intent.getStringExtra("location");
-
-        trackingButton = findViewById(R.id.btn_strike);
-        timerValue = findViewById(R.id.text_timerValue);
-
-        vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
-
-        mExampleList = new ArrayList<>();
-        buildRecyclerView();
-
-        trackingButton.setOnTouchListener((v, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                // start your timer
-                timerValue.setVisibility(View.VISIBLE);
-                startTime = SystemClock.uptimeMillis();
-                customHandler.postDelayed(updateTimerThread,0);
-
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                // stop your timer.
-                timerValue.setVisibility(View.INVISIBLE);
-                insertItem(0);
-                customHandler.removeCallbacks(updateTimerThread);
-                timerValue.setText("00:00");
-                mLayoutManager.scrollToPosition(0);
-                vibrator.vibrate(500);
-            }
-            return false;
-        });
-
-        getForecast(latitude, longitude);
-
-    }
 
     // --RecyclerView--
     // Adds strike details to RV when button is released
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recycler_strike);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new StrikeAdapter(mExampleList);
@@ -151,10 +154,9 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-
+    // --forecast from open weather API--
     private void getForecast(double latitude, double longitude) {
 
-        // Server request with location
         String APIKey = "bd3c617cdb63b3fbafb2f8c8df8173b1";
 
         // Built request string for server
@@ -197,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Used to create and array of data for the hourly forecast by looping through the json data
+    // Used to create and array of data for the daily forecast by looping through the returned json data
     private Day[] getDailyForecast(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
         JSONArray daily = forecast.getJSONArray("daily");
@@ -264,9 +266,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     // Passes the hours array as an intent to be displayed as a recycler view
-    public void dailyOnClick(View view){
+    public void dailyForecastOnClick(View view){
 
         List<Day> days = Arrays.asList(day);
 

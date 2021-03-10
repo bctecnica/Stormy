@@ -5,7 +5,7 @@
     android:padding="10dp"
     android:text="South"
     android:gravity="center"
-    android:textColor="#0073D2"
+    android:textColor="@color/appBlue"
     android:textSize="20sp">
 
 </TextView>

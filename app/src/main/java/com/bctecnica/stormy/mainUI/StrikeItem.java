@@ -1,17 +1,17 @@
 package com.bctecnica.stormy.mainUI;
 
 public class StrikeItem {
-    private String text1;
-    private String text2;
-    public StrikeItem(String text1, String text2) {
-        this.text1 = text1;
-        this.text2 = text2;
+    private String time;
+    private String distance;
+    public StrikeItem(String time, String distance) {
+        this.time = time;
+        this.distance = distance;
     }
 
-    public String getText1() {
-        return text1;
+    public String getTime() {
+        return time;
     }
-    public String getText2() {
-        return text2;
+    public String getDistance() {
+        return distance;
     }
 }
