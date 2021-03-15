@@ -4,6 +4,11 @@
     tools:context=".mainUI.MainActivity">
 
     <item
+        android:id="@+id/kmToMilesSwitch"
+        android:checkable="true"
+        android:title="Use miles for distance  " />
+
+    <item
         android:id="@+id/feedbackMenu"
         android:title="Feedback"
         app:showAsAction="never" />

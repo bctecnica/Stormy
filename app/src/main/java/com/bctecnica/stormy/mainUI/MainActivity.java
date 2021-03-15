@@ -3,6 +3,7 @@ package com.bctecnica.stormy.mainUI;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -53,12 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
+    private SharedPreferences.Editor editor;
+    private static final String PREFS_FILE = "com.bctecnica.stormyapp.preferences";
+    private static final String KEY_MILESCHECKED = "KEY_MILESCHECKED";
+    private boolean isConvertKmToMilesChecked = false;
+
     private Button trackingButton;
     private TextView timerValue;
 
     private static DecimalFormat df = new DecimalFormat("0.00");
     private long startTime=0L,timeInMilliseconds=0L,timeSwapBuff=0L,updateTime=0L;
-
     Handler timerHandler = new Handler();
 
     private ArrayList<StrikeItem> mExampleList;
@@ -81,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tracker);
 
         // Activity setup
+        // Restores total count variable
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        isConvertKmToMilesChecked = sharedPreferences.getBoolean(KEY_MILESCHECKED, false);
+
         Intent intent = getIntent();
         latitude = intent.getDoubleExtra("lat",0);
         longitude = intent.getDoubleExtra("long",0);
@@ -139,8 +149,16 @@ public class MainActivity extends AppCompatActivity {
     // Adds strike details to RV when button is released
     public void insertItem(int position) {
         String time = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-        double distanceConversion = (updateTime * 0.343)/1000;
-        String distance = (df.format(distanceConversion) + " km");
+        String distance;
+
+        if(isConvertKmToMilesChecked){
+            double distanceInMiles = (updateTime * 0.343) / 1000 * 0.62;
+            distance = (df.format(distanceInMiles) + " miles");
+        }else {
+            double distanceInKm = (updateTime * 0.343) / 1000;
+            distance = (df.format(distanceInKm) + " km");
+        }
+
         mExampleList.add(position, new StrikeItem(time , distance));
         mAdapter.notifyItemInserted(position);
     }
@@ -247,23 +265,47 @@ public class MainActivity extends AppCompatActivity {
 
     // --Menu--
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem checkable = menu.findItem(R.id.kmToMilesSwitch);
+        checkable.setChecked(isConvertKmToMilesChecked);
+        return true;
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent i = new Intent(Intent.ACTION_SEND);
-        i.setType("message/rfc822");
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bctecnica@gmail.com"});
-        i.putExtra(Intent.EXTRA_SUBJECT, "Stormy app");
-        try {
-            startActivity(Intent.createChooser(i, "Send e-mail..."));
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        switch (item.getItemId()) {
+            case R.id.kmToMilesSwitch:
+                isConvertKmToMilesChecked = !item.isChecked();
+                item.setChecked(isConvertKmToMilesChecked);
+                return true;
+            case R.id.feedbackMenu:
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bctecnica@gmail.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Stormy app");
+                try {
+                    startActivity(Intent.createChooser(i, "Send e-mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(MainActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+    }
+
+    // Saves if user has selected to use miles over KM
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        editor.putBoolean(KEY_MILESCHECKED, isConvertKmToMilesChecked);
+        editor.apply();
     }
 
     // Passes the hours array as an intent to be displayed as a recycler view

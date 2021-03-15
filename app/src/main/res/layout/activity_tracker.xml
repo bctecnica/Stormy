@@ -47,7 +47,8 @@
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/recycler_strike"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/btn_7day_forecast"

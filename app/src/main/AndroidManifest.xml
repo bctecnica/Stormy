@@ -13,13 +13,18 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bctecnica.stormy.mainUI.MainActivity"
-            android:label="Tracker"/>
+        <activity
+            android:name="com.bctecnica.stormy.mainUI.MainActivity"
+            android:label="Tracker"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.bctecnica.stormy.weather.DailyForecast"
-            android:label="@string/title_activity_daily_forecast" />
-        <activity android:name="com.bctecnica.stormy.mainUI.Opening"
-            android:label="Stormy">
+            android:label="@string/title_activity_daily_forecast"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.bctecnica.stormy.mainUI.Opening"
+            android:label="Stormy"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

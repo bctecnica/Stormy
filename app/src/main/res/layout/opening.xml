@@ -67,7 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/image_how_to" />
 
         <View
-            android:id="@+id/divider_mid"
+            android:id="@+id/divider_top"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="40dp"
@@ -90,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_mid" />
+            app:layout_constraintTop_toBottomOf="@+id/divider_top" />
 
         <ImageView
             android:id="@+id/image_world"
@@ -106,13 +106,25 @@
             android:id="@+id/spinner_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/cardview_light_background"
             android:entries="@array/Spinner_items"
-            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_world" />
+
+        <View
+            android:id="@+id/divider_mid"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:background="@color/appWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_location" />
 
         <Button
             android:id="@+id/btn_start"
@@ -125,15 +137,16 @@
             android:textColor="@color/appBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_location" />
+            app:layout_constraintTop_toBottomOf="@+id/divider_mid" />
 
         <TextView
             android:id="@+id/companyLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:text="BCTecnica &#169;"
-            android:textColor="@color/appWhite"
+            android:textColor="#B3FFFFFF"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_start" />
