@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.Menu;
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         timerValue = findViewById(R.id.txt_timer_value);
 
         vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        VibrationEffect effect = VibrationEffect.createOneShot(500, 150);
 
         mExampleList = new ArrayList<>();
         buildRecyclerView();
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 timerHandler.removeCallbacks(updateTimer);
                 timerValue.setText("00:00");
                 mLayoutManager.scrollToPosition(0);
-                vibrator.vibrate(500);
+                vibrator.vibrate(effect);
             }
             return false;
         });
