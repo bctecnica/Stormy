@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -113,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 timerValue.setVisibility(View.VISIBLE);
                 startTime = SystemClock.uptimeMillis();
                 timerHandler.postDelayed(updateTimer,0);
-
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            } else if (event.getAction() == MotionEvent.ACTION_UP || (event.getAction() == MotionEvent.ACTION_CANCEL)) {
                 // stop your timer.
                 timerValue.setVisibility(View.INVISIBLE);
                 insertItem(0);

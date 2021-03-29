@@ -4,6 +4,6 @@
     android:layout_height="wrap_content"
     android:text="South"
     android:textColor="@color/appBlue"
-    android:textSize="20sp">
+    android:textSize="18sp">
 
 </CheckedTextView>
